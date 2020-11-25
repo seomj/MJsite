@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="guestbook">
+	<form action="{% url 'guestbook:write' %}" method="post">
+		{% csrf_token %}
+		<table>
+			<tr>
+				<td>이름</td><td><input name='name' value="{{ user.username }}" readonly></td>
+				<td>비밀번호</td><td><input type="password" name="password"></td>
+			</tr>
+			<tr>
+				<td colspan=4><textarea name="contents" id="contents" style="width:700px;height:200px"></textarea></td>
+			</tr>
+			<tr>
+				<td colspan=4 align=right><input type="submit" VALUE=" 확인 "></td>
+			</tr>
+		</table>
+	</form>
+	<ul>
+			{% for guestbook in guestbooklist %}
+				<table>
+					<tr>
+						<td>{{ guestbook.name }} /</td>
+						<td colspan=4>
+						{{ guestbook.contents|linebreaks }}</td>
+						<td>/ {{ guestbook.reg_date|date:'Y-m-d H:i' }} /</td>
+						<td><a href="{% url 'guestbook:deleteform' guestbook.id %}">삭제</a></td>
+					</tr>
+				</table>
+			<br>
+			{% endfor %}
+			<br>
+	</ul>
+</div>
+{% endblock%}

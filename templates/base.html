@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MINJAE's WEB</title>
+</head>
+
+<body>
+    <header>
+		<div>
+            <h1><a href="/">MINJAE HOME</a></h1>
+        </div>
+	</header>
+    <section>
+        <header>
+            <div>
+                <span><a href="/intro">소개</a></span>
+                <span><a href="/sns">SNS</a></span>
+                <span><a href="/hobby">취미생활</a></span>
+                <span><a href="/guestbook">방명록</a> /</span>
+                <span>
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'common:logout' %}">{{ user.username }} (로그아웃)</a>
+                    {% else %}
+                    <button onclick="location.href='/common/login'">로그인</button>
+                    {% endif %}
+                </span>
+            </div>
+        </header>
+        <article>
+            <div>
+                <fieldset>
+                    {% block content%}{% endblock %}
+                </fieldset>
+            </div>
+        </article>
+	</section>
+</body>
+</html>

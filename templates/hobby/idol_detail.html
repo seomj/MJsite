@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ object.name }}</h1>
+    <br>
+    <li>Members :
+    {% for member in object.member.all %}
+        {{ member }}
+        {% if not forloop.last %},{% else %}{% endif %}
+    {% endfor %}
+    </li>
+    <li>Ent :
+    {% for ent in object.ent.all %}
+        {{ ent }}
+        {% if not forloop.last %},{% else %}{% endif %}
+    {% endfor %}
+    </li>
+    <li><a href="{{ object.youtube }}">YOUTUBE</a></li>
+    <br>
+    <br>
+    <a href="{{ object.more }}">더보기</a>
+{% endblock content %}

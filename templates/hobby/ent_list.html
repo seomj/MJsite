@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Ent List</h2>
+    <ul>
+        {% for ent in object_list %}
+            <li>
+                <a href="{% url 'hobby:ent_detail' ent.id %}">{{ ent.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

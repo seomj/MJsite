@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>My favorite Idols</h2>
+    <ul>
+        {% for modelname in model_list %}
+{% with "hobby:"|add:modelname|lower|add:"_list" as urlvar %}
+            <li>
+                <a href="{% url urlvar %}">{{ modelname }}</a>
+            </li>
+{% endwith %}
+        {% endfor %}
+    </ul>
+{% endblock content %}
